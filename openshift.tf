@@ -73,6 +73,11 @@ resource "kubernetes_manifest" "deployment_vaulidate" {
       }
     }
   }
+
+  depends_on = [
+    kubernetes_service_account.vaulidate,
+    kubernetes_namespace.vaulidate
+  ]
 }
 
 resource "kubernetes_manifest" "service_vaulidate_vaulidate" {
@@ -96,6 +101,10 @@ resource "kubernetes_manifest" "service_vaulidate_vaulidate" {
       }
     }
   }
+
+  depends_on = [
+    kubernetes_manifest.deployment_vaulidate
+  ]
 }
 
 resource "kubernetes_manifest" "route_vaulidate_validate" {
@@ -117,6 +126,9 @@ resource "kubernetes_manifest" "route_vaulidate_validate" {
       }
     }
   }
+  depends_on = [
+    kubernetes_manifest.service_vaulidate_vaulidate
+  ]
 }
 
 resource "helm_release" "vault" {
