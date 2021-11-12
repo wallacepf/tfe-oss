@@ -1,8 +1,9 @@
 terraform {
-  required_version = ">= 0.11.1"
+  required_version = ">= 1.0.0"
 }
 
 provider "google" {
-  project     = "${var.gcp_project}"
-  region      = "${var.gcp_region}"
+  project     = var.gcp_project
+  region      = var.gcp_region
+  zone = var.gcp_zone
 }
