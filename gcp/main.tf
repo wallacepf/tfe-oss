@@ -13,18 +13,13 @@ resource "google_compute_instance" "demo" {
   }
 
   network_interface {
-    network = google_compute_network.vpc_network.self_link
+    network = "default"
 
     access_config {
       // Ephemeral IP
     }
   }
 
-}
-
-resource "google_compute_network" "vpc_network" {
-  name                    = "terraform-network"
-  auto_create_subnetworks = "true"
 }
 
 output "external_ip"{
