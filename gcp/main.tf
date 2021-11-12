@@ -1,6 +1,7 @@
 
 
 resource "google_compute_instance" "demo" {
+credentials = var.gcp_credentials
   name         = "${var.instance_name}"
   machine_type = "${var.machine_type}"
   zone         = "${var.gcp_zone}"
